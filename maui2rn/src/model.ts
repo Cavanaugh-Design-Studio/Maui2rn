@@ -1,0 +1,11 @@
+export type Severity = 'low' | 'medium' | 'high';
+export type Finding = { code: string; severity: Severity; message: string; source?: string; target?: string };
+export type XmlNode = { name: string; attributes: Record<string, string>; children: XmlNode[]; text?: string };
+export type MauiPage = { id: string; source: string; title: string; root: XmlNode; bindings: string[]; commands: string[]; route?: string; viewModel?: string };
+export type MauiProperty = { name: string; type: string; attributes: string[]; sourceKind?: string; itemType?: string | null; itemKey?: string | null; validation?: {kind:string;argument?:string|null}[]; semanticResolved?: boolean };
+export type MauiCommand = { name:string; method:string; actions:{kind:string;target:string;value:string;valueType?:string}[]; supported:boolean };
+export type MauiClass = { name: string; namespace: string; source: string; bases: string[]; properties: MauiProperty[]; methods: { name: string; returnType: string; attributes: string[]; parameters?:{name:string;type:string}[] }[]; commands?:MauiCommand[]; navigation: string[]; registrations: string[]; httpCalls?:{verb:string;url:string;method:string;owner?:string}[]; dependencies?:string[]; semanticResolved?:boolean; attributes: string[] };
+export type MauiProject = { path: string; name: string; targetFrameworks: string[]; packages: { name: string; version?: string }[]; references: string[] };
+export type MauiModel = { schemaVersion: 1; root: string; input: string; analysisMode?:'semantic'|'syntax'; projects: MauiProject[]; pages: MauiPage[]; classes: MauiClass[]; routes: { route: string; page: string }[]; findings: Finding[]; coverage: { pages: number; supportedPages: number; unsupportedControls: number; viewModels: number; services: number }; createdAt: string };
+export type ProposedFile = { path: string; content: string; sha256: string; source?: string; risk: Severity };
+export type Proposal = { schemaVersion: 1; id: string; modelHash: string; appRoot: string; files: ProposedFile[]; findings: Finding[]; createdAt: string; agentReviews?: {role:string;summary:string;findings:Finding[];durationMs:number;usage?:{inputTokens:number;outputTokens:number}}[]; parentId?: string };

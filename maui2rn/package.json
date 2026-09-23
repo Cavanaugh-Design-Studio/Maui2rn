@@ -1,0 +1,31 @@
+{
+  "name": "maui2rn",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "maui2rn": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc --noEmit -p tsconfig.json",
+    "test": "node --test dist/test/*.test.js",
+    "verify": "npm run check && npm run build && npm test"
+  },
+  "engines": {
+    "node": "^22.13.0 || ^24.3.0 || >=26.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.0.0",
+    "@openai/codex-sdk": "0.155.1",
+    "@react-native-community/cli": "20.2.0",
+    "commander": "14.0.3",
+    "fast-xml-parser": "5.11.1",
+    "typescript": "6.0.3",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.0.0",
+    "@types/node": "24.13.6"
+  }
+}
